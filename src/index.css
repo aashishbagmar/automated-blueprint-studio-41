@@ -1,0 +1,182 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 4%;
+    --foreground: 150 100% 95%;
+
+    --card: 0 0% 6%;
+    --card-foreground: 150 100% 95%;
+
+    --popover: 0 0% 6%;
+    --popover-foreground: 150 100% 95%;
+
+    --primary: 160 100% 50%;
+    --primary-foreground: 0 0% 4%;
+
+    --secondary: 0 0% 10%;
+    --secondary-foreground: 150 100% 95%;
+
+    --muted: 0 0% 12%;
+    --muted-foreground: 0 0% 55%;
+
+    --accent: 175 100% 45%;
+    --accent-foreground: 0 0% 4%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 160 50% 15%;
+    --input: 0 0% 12%;
+    --ring: 160 100% 50%;
+
+    --radius: 0.5rem;
+
+    /* Custom tokens */
+    --glow-primary: 160 100% 50%;
+    --glow-accent: 175 100% 45%;
+    --grid-color: 160 50% 20%;
+    --code-bg: 0 0% 8%;
+    --terminal-green: 120 100% 50%;
+  }
+
+  .dark {
+    --background: 0 0% 4%;
+    --foreground: 150 100% 95%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fira Code', monospace;
+  }
+}
+
+@layer components {
+  .font-mono {
+    font-family: 'Fira Code', monospace;
+  }
+
+  .glow-border {
+    box-shadow: 
+      0 0 20px hsl(var(--primary) / 0.3),
+      inset 0 0 20px hsl(var(--primary) / 0.05);
+  }
+
+  .glow-border-intense {
+    box-shadow: 
+      0 0 30px hsl(var(--primary) / 0.5),
+      0 0 60px hsl(var(--primary) / 0.3),
+      inset 0 0 30px hsl(var(--primary) / 0.1);
+  }
+
+  .glow-text {
+    text-shadow: 0 0 20px hsl(var(--primary) / 0.5);
+  }
+
+  .code-block {
+    @apply bg-[hsl(var(--code-bg))] border border-border rounded-lg;
+    background-image: 
+      linear-gradient(90deg, hsl(var(--grid-color) / 0.1) 1px, transparent 1px),
+      linear-gradient(hsl(var(--grid-color) / 0.1) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+
+  .nav-link {
+    @apply relative text-muted-foreground hover:text-primary transition-colors duration-300;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+  }
+
+  .nav-link:hover::after {
+    @apply w-full;
+  }
+
+  .skill-tag {
+    @apply px-4 py-2 bg-secondary border border-border rounded-full font-mono text-sm;
+    @apply hover:border-primary hover:glow-border transition-all duration-300;
+  }
+
+  .project-card {
+    @apply code-block p-0 overflow-hidden transition-all duration-300;
+  }
+
+  .project-card:hover {
+    @apply glow-border-intense scale-[1.02];
+  }
+
+  .project-header {
+    @apply bg-secondary/50 px-4 py-3 border-b border-border flex items-center gap-2;
+  }
+
+  .terminal-dot {
+    @apply w-3 h-3 rounded-full;
+  }
+
+  .cursor-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  .grid-bg {
+    background-image: 
+      linear-gradient(90deg, hsl(var(--grid-color) / 0.15) 1px, transparent 1px),
+      linear-gradient(hsl(var(--grid-color) / 0.15) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+
+  .gradient-mask {
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+  }
+}
+
+@layer utilities {
+  .text-gradient {
+    @apply bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent;
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% { 
+      box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+    }
+    50% { 
+      box-shadow: 0 0 40px hsl(var(--primary) / 0.6);
+    }
+  }
+}
