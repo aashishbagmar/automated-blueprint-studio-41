@@ -1,23 +1,126 @@
-import { useState, useRef } from "react";
+import { useState, useRef, FormEvent, ChangeEvent, useEffect } from "react";
 import { toast } from "@/hooks/use-toast";
+import emailjs from "@emailjs/browser";
+
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
 
 const ContactSection = () => {
+  const [formData, setFormData] = useState<FormData>({
+    name: "",
+    email: "",
+    message: "",
+  });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [ripple, setRipple] = useState<{ x: number; y: number } | null>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Initialize EmailJS on component mount
+  useEffect(() => {
+    // Your EmailJS Public Key - Get from https://dashboard.emailjs.com/
+    // Replace with your actual public key once you create EmailJS account
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY || "service_nw8kx79";
+    
+    if (publicKey && publicKey !== "service_nw8kx79") {
+      emailjs.init(publicKey);
+    }
+  }, []);
+
+  const handleChange = (
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    setTimeout(() => {
-      setIsSubmitting(false);
+    try {
+      // Validate form data
+      if (!formData.name || !formData.email || !formData.message) {
+        toast({
+          title: "Error",
+          description: "Please fill in all fields",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      if (formData.message.length < 10) {
+        toast({
+          title: "Error",
+          description: "Message must be at least 10 characters",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Get credentials from environment variables
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+      // Check if credentials are set
+      if (!serviceId || !templateId || !publicKey) {
+        toast({
+          title: "Configuration Error",
+          description: "Please set up EmailJS credentials. Check EMAILJS_QUICK_START.md for instructions.",
+          variant: "destructive",
+        });
+        setIsSubmitting(false);
+        return;
+      }
+
+      // Send email using EmailJS
+      const response = await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          to_email: "bagmaraashish@gmail.com",
+          from_name: formData.name,
+          from_email: formData.email,
+          message: formData.message,
+          reply_to: formData.email,
+        }
+      );
+
+      if (response.status === 200) {
+        toast({
+          title: "Message sent! ✅",
+          description:
+            "Thanks for reaching out. I'll get back to you soon.",
+        });
+
+        // Reset form
+        setFormData({
+          name: "",
+          email: "",
+          message: "",
+        });
+      } else {
+        throw new Error("Failed to send message");
+      }
+    } catch (error) {
+      console.error("Error:", error);
       toast({
-        title: "Message sent!",
-        description: "Thanks for reaching out. I'll get back to you soon.",
+        title: "Error",
+        description:
+          "Failed to send message. Please try again or email me directly at bagmaraashish@gmail.com",
+        variant: "destructive",
       });
-    }, 1500);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleRipple = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -65,6 +168,9 @@ const ContactSection = () => {
                 </label>
                 <input
                   type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   required
                   className="w-full bg-input border border-border rounded-lg px-4 py-3 font-mono text-sm focus:outline-none focus:border-primary focus:glow-border transition-all"
                   placeholder='"Your Name"'
@@ -78,6 +184,9 @@ const ContactSection = () => {
                 </label>
                 <input
                   type="email"
+                  name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   required
                   className="w-full bg-input border border-border rounded-lg px-4 py-3 font-mono text-sm focus:outline-none focus:border-primary focus:glow-border transition-all"
                   placeholder='"your@email.com"'
@@ -90,6 +199,9 @@ const ContactSection = () => {
                   <span className="text-muted-foreground"> = </span>
                 </label>
                 <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
                   required
                   rows={4}
                   className="w-full bg-input border border-border rounded-lg px-4 py-3 font-mono text-sm focus:outline-none focus:border-primary focus:glow-border transition-all resize-none"
