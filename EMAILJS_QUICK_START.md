@@ -24,7 +24,15 @@ Sign up → Create Account
 2. **Template Name**: `contact_form`
 3. **Template ID**: `template_contact_form`
 4. **Subject**: `New Contact Form Submission from {{from_name}}`
-5. **Body**: Use the HTML provided in EMAILJS_SETUP.md
+5. **Body**: Use this simple HTML for your template:
+
+```html
+<p><strong>Name:</strong> {{from_name}}</p>
+<p><strong>Email:</strong> {{from_email}}</p>
+<p><strong>Subject:</strong> {{subject}}</p>
+<p><strong>Message:</strong></p>
+<p>{{message}}</p>
+```
 6. Save
 
 ### 4. Get Public Key (1 minute)
