@@ -5,10 +5,16 @@ const Footer = () => {
         <p className="font-mono text-sm text-muted-foreground">
           <span className="text-primary">#</span> Built with{" "}
           <span className="text-primary">Python</span> mindset &{" "}
-          <span className="text-accent">clean code</span> principles
+          <span className="text-accent">automation</span> expertise
         </p>
         <p className="font-mono text-xs text-muted-foreground mt-2">
-          © {new Date().getFullYear()} Alex Python. All rights reserved.
+          © {new Date().getFullYear()} Aashish Bagmar. All rights reserved.
+        </p>
+        <p className="font-mono text-xs text-muted-foreground mt-1">
+          <span className="text-muted-foreground"># Interests: </span>
+          <span className="text-accent">Badminton</span>
+          <span className="text-muted-foreground"> | </span>
+          <span className="text-accent">Volleyball</span>
         </p>
       </div>
     </footer>

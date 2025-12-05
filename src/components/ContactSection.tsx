@@ -149,19 +149,38 @@ const ContactSection = () => {
 
           <div className="mt-12 flex justify-center gap-6">
             {[
-              { icon: "github", href: "#", label: "GitHub" },
-              { icon: "linkedin", href: "#", label: "LinkedIn" },
-              { icon: "twitter", href: "#", label: "Twitter" },
+              { icon: "github", href: "https://github.com/aashishbagmar/Projects", label: "GitHub" },
+              { icon: "linkedin", href: "https://linkedin.com/in/aashishbagmar", label: "LinkedIn" },
+              { icon: "email", href: "mailto:bagmaraashish@gmail.com", label: "Email" },
             ].map((social) => (
               <a
                 key={social.icon}
                 href={social.href}
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-12 h-12 flex items-center justify-center rounded-lg border border-border hover:border-primary hover:text-primary hover:glow-border transition-all duration-300"
                 aria-label={social.label}
               >
                 <span className="font-mono text-xs">{`<${social.icon[0]}/>`}</span>
               </a>
             ))}
+          </div>
+          
+          <div className="mt-8 text-center">
+            <p className="font-mono text-sm text-muted-foreground mb-2">
+              <span className="text-accent">email</span>
+              <span className="text-muted-foreground"> = </span>
+              <a href="mailto:bagmaraashish@gmail.com" className="text-primary hover:glow-text">
+                "bagmaraashish@gmail.com"
+              </a>
+            </p>
+            <p className="font-mono text-sm text-muted-foreground">
+              <span className="text-accent">phone</span>
+              <span className="text-muted-foreground"> = </span>
+              <a href="tel:+917588833694" className="text-primary hover:glow-text">
+                "+91 7588833694"
+              </a>
+            </p>
           </div>
         </div>
       </div>

@@ -6,28 +6,34 @@ gsap.registerPlugin(ScrollTrigger);
 
 const projects = [
   {
-    name: "auto_deploy",
-    description: "A CI/CD pipeline automation tool that reduces deployment time by 70%. Built with Python, Docker, and GitHub Actions.",
-    tech: ["Python", "Docker", "GitHub Actions", "AWS"],
-    link: "#",
+    name: "amazon_price_tracker",
+    description: "Automated price monitoring system that scrapes Amazon product prices and sends email alerts when prices drop. Built with BeautifulSoup and custom headers to avoid blocking.",
+    tech: ["Python", "BeautifulSoup", "Requests", "smtplib", "python-dotenv"],
+    link: "https://github.com/aashishbagmar/Projects",
   },
   {
-    name: "data_pipeline",
-    description: "Real-time data processing pipeline handling 1M+ events/day. ETL workflows with monitoring and alerting.",
-    tech: ["Python", "Apache Kafka", "PostgreSQL", "Redis"],
-    link: "#",
+    name: "password_manager",
+    description: "Secure GUI application for encrypted credential storage with password generation and one-click copying. User-friendly interface built with Tkinter.",
+    tech: ["Python", "Tkinter", "JSON", "pyperclip", "random"],
+    link: "https://github.com/aashishbagmar/Projects",
   },
   {
-    name: "api_gateway",
-    description: "High-performance REST API built with FastAPI. Handles 10k+ requests/second with async processing.",
-    tech: ["FastAPI", "PostgreSQL", "Redis", "Docker"],
-    link: "#",
+    name: "habit_tracker",
+    description: "API-based habit logging system using Pixela API with date-wise tracking and visual progress charts. Helps maintain consistency with daily habit tracking.",
+    tech: ["Python", "Requests", "datetime", "Pixela API"],
+    link: "https://github.com/aashishbagmar/Projects",
   },
   {
-    name: "task_scheduler",
-    description: "Distributed task scheduling system with retry logic, dead letter queues, and comprehensive logging.",
-    tech: ["Python", "Celery", "RabbitMQ", "Flower"],
-    link: "#",
+    name: "form_filler_bot",
+    description: "Intelligent web automation bot that auto-fills forms using Selenium, handling dynamic elements, dropdowns, and secure credential management.",
+    tech: ["Python", "Selenium WebDriver", "dotenv"],
+    link: "https://github.com/aashishbagmar/Projects",
+  },
+  {
+    name: "cookie_clicker_bot",
+    description: "Automated gaming bot that interacts with dynamic webpage elements, implementing timed clicks and progress tracking for Cookie Clicker game.",
+    tech: ["Python", "Selenium", "WebDriver"],
+    link: "https://github.com/aashishbagmar/Projects",
   },
 ];
 
@@ -38,18 +44,25 @@ const ProjectsSection = () => {
     if (!sectionRef.current) return;
 
     const ctx = gsap.context(() => {
-      gsap.from(".project-item", {
-        opacity: 0,
-        y: 50,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power3.out",
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          toggleActions: "play none none reverse",
+      gsap.fromTo(".project-item", 
+        {
+          opacity: 0,
+          y: 50,
         },
-      });
+        {
+          opacity: 1,
+          y: 0,
+          duration: 0.8,
+          stagger: 0.15,
+          ease: "power3.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 85%",
+            end: "bottom 20%",
+            toggleActions: "play none none none",
+          },
+        }
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -66,12 +79,15 @@ const ProjectsSection = () => {
           # Featured work from my portfolio
         </p>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {projects.map((project, index) => (
             <a
               key={project.name}
               href={project.link}
-              className="project-item project-card block group"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="project-item project-card block group opacity-100"
+              style={{ animationDelay: `${index * 0.1}s` }}
             >
               <div className="project-header">
                 <span className="terminal-dot bg-destructive"></span>

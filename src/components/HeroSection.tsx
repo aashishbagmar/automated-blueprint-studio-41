@@ -5,7 +5,7 @@ const HeroSection = () => {
   const heroRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const [typedText, setTypedText] = useState("");
-  const fullText = "Automating solutions, one script at a time.";
+  const fullText = "Automating workflows, scraping data, building solutions.";
 
   useEffect(() => {
     // Typewriter effect
@@ -57,7 +57,7 @@ const HeroSection = () => {
             <span className="text-primary">#!/usr/bin/env python3</span>
           </p>
           <p className="hero-line font-mono text-muted-foreground text-sm">
-            <span className="text-accent"># Clean Code & Automation Expert</span>
+            <span className="text-accent"># Automation & Web Scraping Specialist</span>
           </p>
         </div>
 
@@ -66,14 +66,14 @@ const HeroSection = () => {
           className="hero-line font-mono text-3xl md:text-5xl lg:text-6xl mb-6 leading-tight"
         >
           <span className="text-primary">def</span>{" "}
-          <span className="text-foreground">solve_problem</span>
+          <span className="text-foreground">automate_everything</span>
           <span className="text-muted-foreground">(</span>
-          <span className="text-accent">code</span>
+          <span className="text-accent">data</span>
           <span className="text-muted-foreground">):</span>
         </h1>
 
         <h2 className="hero-line text-4xl md:text-6xl lg:text-7xl font-bold mb-4 text-gradient">
-          Alex Python
+          Aashish Bagmar
         </h2>
 
         <p className="hero-line text-xl md:text-2xl text-muted-foreground mb-8">

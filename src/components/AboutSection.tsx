@@ -88,30 +88,45 @@ const AboutSection = () => {
                   <span className="text-muted-foreground">self.</span>
                   <span className="text-accent">passion</span>
                   <span className="text-muted-foreground"> = </span>
-                  <span className="text-yellow-400">"Clean, efficient code"</span>
+                  <span className="text-yellow-400">"Automation & Data Workflows"</span>
                   {"\n\n"}
                   {"    "}
                   <span className="text-muted-foreground">self.</span>
-                  <span className="text-accent">experience</span>
+                  <span className="text-accent">education</span>
                   <span className="text-muted-foreground"> = </span>
-                  <span className="text-primary">5</span>
-                  <span className="text-muted-foreground"> # years</span>
+                  <span className="text-yellow-400">"BE - AI & Data Science"</span>
+                  {"\n"}
+                  {"    "}
+                  <span className="text-muted-foreground">self.</span>
+                  <span className="text-accent">university</span>
+                  <span className="text-muted-foreground"> = </span>
+                  <span className="text-yellow-400">"SPPU, Pune"</span>
+                  {"\n"}
+                  {"    "}
+                  <span className="text-muted-foreground">self.</span>
+                  <span className="text-accent">sgpa</span>
+                  <span className="text-muted-foreground"> = </span>
+                  <span className="text-primary">8.71</span>
                   {"\n\n"}
                   {"    "}
                   <span className="text-muted-foreground">self.</span>
-                  <span className="text-accent">focus</span>
+                  <span className="text-accent">expertise</span>
                   <span className="text-muted-foreground"> = [</span>
                   {"\n"}
                   {"        "}
-                  <span className="text-yellow-400">"Backend Development"</span>
+                  <span className="text-yellow-400">"Web Scraping & Automation"</span>
                   <span className="text-muted-foreground">,</span>
                   {"\n"}
                   {"        "}
-                  <span className="text-yellow-400">"Automation & DevOps"</span>
+                  <span className="text-yellow-400">"REST API Integration"</span>
                   <span className="text-muted-foreground">,</span>
                   {"\n"}
                   {"        "}
-                  <span className="text-yellow-400">"Data Engineering"</span>
+                  <span className="text-yellow-400">"GUI Development"</span>
+                  <span className="text-muted-foreground">,</span>
+                  {"\n"}
+                  {"        "}
+                  <span className="text-yellow-400">"AI/ML with Pandas & Scikit-learn"</span>
                   {"\n"}
                   {"    "}
                   <span className="text-muted-foreground">]</span>
@@ -120,14 +135,17 @@ const AboutSection = () => {
             </div>
 
             <p className="mt-6 text-muted-foreground leading-relaxed">
-              I transform complex problems into elegant, automated solutions. With a
-              deep love for Python and clean architecture, I build systems that are
-              not just functional, but maintainable and scalable.
+              Python developer experienced in automating data workflows through web scraping 
+              (BeautifulSoup/Selenium) and REST API integrations. I've developed practical 
+              tools including an Amazon Price Tracker and Password Manager, demonstrating 
+              strong problem-solving skills.
             </p>
 
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              From web APIs to data pipelines, my code follows best practices and
-              always prioritizes readability. Because good code should tell a story.
+              Currently in my third year pursuing Bachelor of Engineering in Artificial 
+              Intelligence and Data Science at Savitribai Phule Pune University (SGPA: 8.71). 
+              Expanding into AI/ML with Pandas and Scikit-learn, eager to contribute my 
+              automation expertise to machine learning projects.
             </p>
           </div>
         </div>
